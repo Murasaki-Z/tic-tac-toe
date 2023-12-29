@@ -28,6 +28,11 @@ def prompt(Player):
 	print('\n\n')
 	print(('\t Player {Player}').format(Player=Player))
 	print('\t Enter Row and Column to draw \n')
+	
+	print('\n \t Or Select from the following options (Case Insensitive)')
+	print('\n \t    1. Random Moves - R (Enter number to select number of games to play)')
+	print('\n \t    2. Quit - Q')
+
 	new_move = input()
 
 	validate_move(new_move, Player)
@@ -41,6 +46,9 @@ def validate_move(new_move, Player):
 		else:
 			random_move(Player)
 		return None
+
+	if new_move[0] in ('Q', 'q'):
+		exit()
 
 	print(int(new_move[0]), int(new_move[2]))
 
@@ -84,31 +92,6 @@ def check_result():
 		elif X_count + Y_count >= 9:
 			print('\n\t---Tie!---')
 			return -1
-
-
-
-
-
-		# i = 2
-
-		# while i > 0:
-
-		# 	if X_count + Y_count > 10:
-		# 		print('\n\t---Tie!---')
-		# 		return -1
-		# 	elif X == 1:
-				
-		# 		return -1
-		# 	elif O == 1:
-		# 		print('\n\t---O Wins!---')
-		# 		return -1
-		# 	elif X_count + Y_count == 9:
-		# 		print('\n\t---Tie!---')
-		# 		return -1
-		# 	else:
-		# 		return 0
-		# 	i = i-1
-
 
 def random_move(Player, iteration = 1):
 
@@ -168,7 +151,7 @@ while(True):
 # To DOs
 # board_state - init all then append vals to this - Done
 # UI
-# Validation and Result check. Option to enable random player(R) or Quit(Q)- 
+# Validation and Result check. Option to enable random player(R) or Quit(Q)- Done 
 # type "checks"
 # auto player - random valid moves
 # data capture and storage.
