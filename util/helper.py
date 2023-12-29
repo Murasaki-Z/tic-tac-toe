@@ -15,43 +15,77 @@ def indices(board):
 
     return Xs, Os
 
-def search(Moves, original_list = None):
-
-	if original_list is None:
-		original_list = Moves
-
-	node = Moves.pop(0)
+def search(board):
 
 
-	if (node[0], node[1] + 1) in Moves and (node[0], node[1] + 2) in Moves \
-	and Moves[Moves.index((node[0], node[1] + 1))] is not None \
-	and Moves[Moves.index((node[0], node[1] + 2))] is not None:
-		return 1
+	
 
-	elif (node[0] + 1, node[1]) in Moves and (node[0] + 2, node[1]) in Moves \
-	and Moves[Moves.index((node[0] + 1, node[1]))] is not None \
-	and Moves[Moves.index((node[0] + 2, node[1]))] is not None:
-		return 1
+	for i in range(0, 7, 3):
+		
+		#row	
 
-	elif (node[0] + 1, node[1] + 1) in Moves and (node[0] + 2, node[1] + 2) in Moves \
-	and Moves[Moves.index((node[0] + 1, node[1] + 1))] is not None \
-	and Moves[Moves.index((node[0] + 2, node[1] + 2))] is not None:
-		return 1
+		if board[i] == board[i+1] == board[i+2]:
+			return board[i]
 
-	elif (node[0] + 1, node[1] - 1) in Moves and (node[0] + 2, node[1] - 2) in Moves \
-	and Moves[Moves.index((node[0] + 1, node[1] - 1))] is not None \
-	and Moves[Moves.index((node[0] + 2, node[1] - 2))] is not None:
-		return 1
+	for i in range(0, 4):
 
-	else:
-		try:
-			search(Moves, original_list)
-		except:
-			return False
-	# if len(Moves) < 2:
-	#     return 0
-	# else:
-	#     return search(Moves)
+		#col 
+
+		if board[i] == board[i+3] == board[i+6]:
+			return board[i]
+
+	
+	#leading diagonal
+
+	if board[0] == board[4] == board[8]:
+		return board[i]
+
+	#trailing diagonal
+
+	elif board[2] == board[4] == board[6]:
+		return board[i]
+
+
+
+
+
+# def search(Moves, original_list = None):
+
+# 	if original_list is None:
+# 		original_list = Moves
+
+# 	node = Moves.pop(0)
+
+
+# 	if (node[0], node[1] + 1) in Moves and (node[0], node[1] + 2) in Moves \
+# 	and Moves[Moves.index((node[0], node[1] + 1))] is not None \
+# 	and Moves[Moves.index((node[0], node[1] + 2))] is not None:
+# 		return 1
+
+# 	elif (node[0] + 1, node[1]) in Moves and (node[0] + 2, node[1]) in Moves \
+# 	and Moves[Moves.index((node[0] + 1, node[1]))] is not None \
+# 	and Moves[Moves.index((node[0] + 2, node[1]))] is not None:
+# 		return 1
+
+# 	elif (node[0] + 1, node[1] + 1) in Moves and (node[0] + 2, node[1] + 2) in Moves \
+# 	and Moves[Moves.index((node[0] + 1, node[1] + 1))] is not None \
+# 	and Moves[Moves.index((node[0] + 2, node[1] + 2))] is not None:
+# 		return 1
+
+# 	elif (node[0] + 1, node[1] - 1) in Moves and (node[0] + 2, node[1] - 2) in Moves \
+# 	and Moves[Moves.index((node[0] + 1, node[1] - 1))] is not None \
+# 	and Moves[Moves.index((node[0] + 2, node[1] - 2))] is not None:
+# 		return 1
+
+# 	else:
+# 		try:
+# 			search(Moves, original_list)
+# 		except:
+# 			return False
+# 	# if len(Moves) < 2:
+# 	#     return 0
+# 	# else:
+# 	#     return search(Moves)
 
 
 

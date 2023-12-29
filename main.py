@@ -70,26 +70,44 @@ def check_result():
 
 	if  X_count >= 3 or Y_count >= 3:
 
-		#fetch indices
-		Xs, Os = indices(board)
 
-		X = search(Xs)
-		O = search(Os)
+		winner = search(board)
 
-		if X_count + Y_count > 9:
-			print('\n\t---Tie!---')
-			return -1
-		elif X == 1:
+		if winner == 'X':
 			print('\n\t---X Wins!---')
 			return -1
-		elif O == 1:
+
+		elif winner == 'O':
 			print('\n\t---O Wins!---')
 			return -1
-		elif X_count + Y_count == 9:
+		
+		elif X_count + Y_count >= 9:
 			print('\n\t---Tie!---')
 			return -1
-		else:
-			return 0
+
+
+
+
+
+		# i = 2
+
+		# while i > 0:
+
+		# 	if X_count + Y_count > 10:
+		# 		print('\n\t---Tie!---')
+		# 		return -1
+		# 	elif X == 1:
+				
+		# 		return -1
+		# 	elif O == 1:
+		# 		print('\n\t---O Wins!---')
+		# 		return -1
+		# 	elif X_count + Y_count == 9:
+		# 		print('\n\t---Tie!---')
+		# 		return -1
+		# 	else:
+		# 		return 0
+		# 	i = i-1
 
 
 def random_move(Player, iteration = 1):
