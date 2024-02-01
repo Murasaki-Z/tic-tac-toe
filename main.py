@@ -3,15 +3,23 @@ import time
 
 from util.draw import draw
 from util.helper import indices, search
+from util.data_capture import write_csv
 
 board = []
 
 player = 'O'
 
+X_moves = []
+O_moves = []
+
+
 def init_board():
-	global board
+	global board, X_moves, O_moves
 
 	board = ['_', '_', '_','_', '_', '_','_', '_', '_']
+
+	X_moves = []
+	O_moves = []
 
 def set_player(Player):
 
@@ -59,38 +67,45 @@ def validate_move(new_move, Player):
 
 def update_board(new_move, Player):
 
-	global board
+	global board, X_moves, O_moves
 
 
 	index_y = (int(new_move[0])-1)*3
 
 	index = index_y + (int(new_move[2])-1)
-
 	
 	board[index] = Player
+
+	if Player =='X':
+		X_moves.append(index)
+	elif Player =='O':
+		O_moves.append(index)
 
 
 def check_result():
 
-	global board
+	global board, X_moves, O_moves
+
 
 	X_count, Y_count = board.count('X'), board.count('O')
 
 	if  X_count >= 3 or Y_count >= 3:
 
-
 		winner = search(board)
 
 		if winner == 'X':
 			print('\n\t---X Wins!---')
+			write_csv([{"X moves": str(X_moves), "O moves": str(O_moves), "board state": str(board), "result": "X wins"}])
 			return -1
 
 		elif winner == 'O':
 			print('\n\t---O Wins!---')
+			write_csv([{"X moves": str(X_moves), "O moves": str(O_moves), "board state": str(board), "result": "O wins"}])
 			return -1
 		
 		elif X_count + Y_count >= 9:
 			print('\n\t---Tie!---')
+			write_csv([{"X moves": str(X_moves), "O moves": str(O_moves), "board state": str(board), "result": "Tie"}])
 			return -1
 
 def random_move(Player, iteration = 1):
@@ -153,6 +168,6 @@ while(True):
 # UI
 # Validation and Result check. Option to enable random player(R) or Quit(Q)- Done 
 # type "checks"
-# auto player - random valid moves
-# data capture and storage.
+# auto player - random valid moves - Done
+# data capture and storage. Capture in CSV - Game, move, player, index of move, result
 # unsupervised? - (C)

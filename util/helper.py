@@ -18,16 +18,14 @@ def indices(board):
 def search(board):
 
 
-	
-
-	for i in range(0, 7, 3):
+	for i in range(0, 6, 3):
 		
 		#row	
 
 		if board[i] == board[i+1] == board[i+2]:
 			return board[i]
 
-	for i in range(0, 4):
+	for i in range(0, 3):
 
 		#col 
 
@@ -38,12 +36,12 @@ def search(board):
 	#leading diagonal
 
 	if board[0] == board[4] == board[8]:
-		return board[i]
+		return board[0]
 
 	#trailing diagonal
 
 	elif board[2] == board[4] == board[6]:
-		return board[i]
+		return board[2]
 
 
 
